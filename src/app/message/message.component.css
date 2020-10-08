@@ -1,0 +1,4 @@
+.container-list-message {
+    overflow-y: scroll;
+    height: 750px;
+  }

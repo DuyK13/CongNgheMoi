@@ -1,0 +1,90 @@
+<div class="container-fluid">
+    <div class="row content">
+        <div class="col-lg-1" style="background-color:#fff;">
+                <div class="wrapper">			
+                    <div class="sidebar">
+                        <div class="sidebar-menu">
+                            <li class="profile">
+                                <img src="../../assets/image/user1.png" alt="">
+                            </li>
+                            <li class="item">
+                                <a href="#" class="menu-btn">
+                                    <i class="fa fa-comment-o"></i><span>Tin nhắn</span>
+                                    
+                                </a>
+                            </li>
+                            <li class="item" id="profile">
+                                <a href="#profile" class="menu-btn">
+                                    <i class="fa fa-user-circle"></i><span>Danh bạ</span>
+                                </a>
+                        </div>
+                    </div>	
+            </div>
+        </div>
+        <div class="col-lg-3">
+            <div class="list-message"> 
+                    <div class="mt-2">
+                        <h5>
+                            <img class="brandImage" src="../../assets/image/chat.png" alt="">
+                            <span class="ml-5">Đinh Đăng Khoa </span>
+                        </h5>
+                    </div>
+                    <div class="mt-2 d-flex">
+                        <form class="flex-grow-1" action="">
+                            <div class="input-group">
+                                <input class="form-control " type="search" id="example-search-input"
+                                    placeholder="Tìm kiếm bạn bè" />
+                                <span class="input-group-append">
+                                    <button class="btn btn-outline-secondary">
+                                        <i class="fa fa-search"></i>
+                                    </button>
+                                </span>
+                            </div>
+                        </form>
+
+                    </div>
+                    <div class="mt-2 ">
+                        <button class="btn btn-outline-secondary btn-block">
+                            <img src="../../assets/image/collaboration.png" style="height: 30px; width: 30px; margin-right: 20px;" alt="">
+                              Tạo nhóm chat
+                        </button>
+                    </div>  <br>
+
+                    <app-list-friend></app-list-friend>
+            </div>
+            
+        </div>
+        
+        <div class="col-lg-8 ">
+            <h5>
+                <img class="brandImage" src="../../assets/image/user.png" alt="">
+                <span class="ml-5">Đinh Đăng Khoa </span>
+            </h5>
+            <br>
+            <app-message></app-message>
+            <br>
+            <form class="flex-grow-1" action="">
+                <div class="input-group">
+                    <span class="input-group-append">
+                        <button class="btn btn-outline-secondary">
+                            <i class="fa fa-file-image-o"></i>
+                        </button>
+                    </span>
+                    <span class="input-group-append">
+                        <button class="btn btn-outline-secondary">
+                            <i class="fa fa-picture-o"></i>
+                        </button>
+                    </span>
+                    <input class="form-control " type="search" id="example-search-input"
+                        placeholder="Nhập tin nhắn" />
+                    <span class="input-group-append">
+                        <button class="btn btn-outline-secondary">
+                            <i class="fa fa-paper-plane-o"></i>
+                        </button>
+                    </span>
+                </div>
+            </form>
+
+        </div>
+    </div>
+</div>   
