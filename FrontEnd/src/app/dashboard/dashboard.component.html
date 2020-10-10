@@ -1,90 +1,318 @@
 <div class="container-fluid">
-    <div class="row content">
-        <div class="col-lg-1" style="background-color:#fff;">
-                <div class="wrapper">			
-                    <div class="sidebar">
-                        <div class="sidebar-menu">
-                            <li class="profile">
-                                <img src="../../assets/image/user1.png" alt="">
-                            </li>
-                            <li class="item">
-                                <a href="#" class="menu-btn">
-                                    <i class="fa fa-comment-o"></i><span>Tin nhắn</span>
-                                    
-                                </a>
-                            </li>
-                            <li class="item" id="profile">
-                                <a href="#profile" class="menu-btn">
-                                    <i class="fa fa-user-circle"></i><span>Danh bạ</span>
-                                </a>
-                        </div>
-                    </div>	
-            </div>
+  <div class="row">
+    <div class="col-lg-1">
+      <div class="wrapper">
+        <div class="sidebar">
+          <div class="sidebar-menu">
+            <li class="profile">
+              <input
+                type="image"
+                (click)="modalService.open('modalUserInformation')"
+                src="../../assets/image/user1.png"
+              />
+            </li>
+            <li class="item">
+              <a href="#" class="menu-btn">
+                <i class="fa fa-comment-o"></i><span>Tin nhắn</span>
+              </a>
+            </li>
+            <li class="item" id="profile">
+              <a href="#profile" class="menu-btn">
+                <i class="fa fa-user-circle"></i><span>Danh bạ</span>
+              </a>
+            </li>
+          </div>
         </div>
-        <div class="col-lg-3">
-            <div class="list-message"> 
-                    <div class="mt-2">
-                        <h5>
-                            <img class="brandImage" src="../../assets/image/chat.png" alt="">
-                            <span class="ml-5">Đinh Đăng Khoa </span>
-                        </h5>
-                    </div>
-                    <div class="mt-2 d-flex">
-                        <form class="flex-grow-1" action="">
-                            <div class="input-group">
-                                <input class="form-control " type="search" id="example-search-input"
-                                    placeholder="Tìm kiếm bạn bè" />
-                                <span class="input-group-append">
-                                    <button class="btn btn-outline-secondary">
-                                        <i class="fa fa-search"></i>
-                                    </button>
-                                </span>
-                            </div>
-                        </form>
-
-                    </div>
-                    <div class="mt-2 ">
-                        <button class="btn btn-outline-secondary btn-block">
-                            <img src="../../assets/image/collaboration.png" style="height: 30px; width: 30px; margin-right: 20px;" alt="">
-                              Tạo nhóm chat
-                        </button>
-                    </div>  <br>
-
-                    <app-list-friend></app-list-friend>
-            </div>
-            
-        </div>
-        
-        <div class="col-lg-8 ">
-            <h5>
-                <img class="brandImage" src="../../assets/image/user.png" alt="">
-                <span class="ml-5">Đinh Đăng Khoa </span>
-            </h5>
-            <br>
-            <app-message></app-message>
-            <br>
-            <form class="flex-grow-1" action="">
-                <div class="input-group">
-                    <span class="input-group-append">
-                        <button class="btn btn-outline-secondary">
-                            <i class="fa fa-file-image-o"></i>
-                        </button>
-                    </span>
-                    <span class="input-group-append">
-                        <button class="btn btn-outline-secondary">
-                            <i class="fa fa-picture-o"></i>
-                        </button>
-                    </span>
-                    <input class="form-control " type="search" id="example-search-input"
-                        placeholder="Nhập tin nhắn" />
-                    <span class="input-group-append">
-                        <button class="btn btn-outline-secondary">
-                            <i class="fa fa-paper-plane-o"></i>
-                        </button>
-                    </span>
-                </div>
-            </form>
-
-        </div>
+      </div>
     </div>
-</div>   
+    <div class="col-lg-3 middle-content" style="background-color: #e6e6e6">
+      <div class="list-message">
+        <div class="mt-2">
+          <h5>
+            <img class="brandImage" src="../../assets/image/chat.png" alt="" />
+            <span class="ml-5">Đinh Đăng Khoa </span>
+          </h5>
+        </div>
+        <div class="mt-2 d-flex">
+          <form class="flex-grow-1" action="">
+            <div class="input-group">
+              <input
+                class="form-control"
+                type="search"
+                id="example-search-input"
+                placeholder="Tìm kiếm bạn bè"
+              />
+              <span class="input-group-append">
+                <button class="btn btn-outline-secondary">
+                  <i class="fa fa-search"></i>
+                </button>
+              </span>
+            </div>
+          </form>
+        </div>
+        <div class="mt-2">
+          <button class="btn btn-outline-secondary btn-block">
+            <img
+              src="../../assets/image/collaboration.png"
+              style="height: 30px; width: 30px; margin-right: 20px"
+              alt=""
+            />
+            Tạo nhóm chat
+          </button>
+        </div>
+        <br />
+
+        <app-list-friend></app-list-friend>
+      </div>
+    </div>
+
+    <div class="col-lg-8">
+      <h5>
+        <img class="brandImage" src="../../assets/image/user.png" alt="" />
+        <span class="ml-5">Đinh Đăng Khoa </span>
+      </h5>
+      <br />
+      <app-message></app-message>
+      <br />
+      <form class="flex-grow-1" action="">
+        <div class="input-group">
+          <span class="input-group-append">
+            <button class="btn btn-outline-secondary">
+              <i class="fa fa-file-image-o"></i>
+            </button>
+          </span>
+          <span class="input-group-append">
+            <button class="btn btn-outline-secondary">
+              <i class="fa fa-picture-o"></i>
+            </button>
+          </span>
+          <input
+            class="form-control"
+            type="search"
+            id="example-search-input"
+            placeholder="Nhập tin nhắn"
+          />
+          <span class="input-group-append">
+            <button class="btn btn-outline-secondary">
+              <i class="fa fa-paper-plane-o"></i>
+            </button>
+          </span>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- Modal User-->
+<jw-modal id="modalUserInformation">
+  <div>
+    <button
+      class="close pr-1"
+      (click)="modalService.close('modalUserInformation')"
+    >
+      &times;
+    </button>
+    <h4 id="userInformationHeader" class="text-center col-11 py-2">
+      THÔNG TIN
+    </h4>
+    <hr />
+    <div id="userInformationBody" class="row">
+      <h3 class="text-center col-12 my-2">Trần Thế Duy</h3>
+      <p class="myPhoneNumber col-lg-6 pl-5 my-2">Điện thoại:</p>
+      <p class="phoneNumber col-lg-6 my-2">0798455595</p>
+      <p class="myGender col-lg-6 pl-5 my-2">Giới tính:</p>
+      <p class="gender col-6 my-2 my-2">Nam</p>
+      <p class="myDayOfBirth col-6 pl-5 my-2">Ngày sinh:</p>
+      <p class="dayOfBirth col-6 my-2">20/08/1999</p>
+    </div>
+    <hr />
+    <div id="userInformationFooter" class="text-center py-2">
+      <button
+        id="changePassword"
+        class="mr-1 btn btn-info"
+        (click)="modalService.open('modalChangePassword')"
+      >
+        Đổi mật khẩu
+      </button>
+      <button
+        id="changeInfo"
+        class="ml-1 btn btn-info"
+        (click)="modalService.open('modalChangeInfo')"
+      >
+        Chỉnh sửa thông tin
+      </button>
+    </div>
+  </div>
+</jw-modal>
+
+<!-- Modal change password -->
+<jw-modal id="modalChangePassword">
+  <div id="myModalChangePassword">
+    <h4 id="changePasswordHeader" class="text-center col-11 py-2">
+      ĐỔI MẬT KHẨU
+    </h4>
+    <hr />
+    <form action="/action_page.php">
+      <div id="changePasswordBody">
+        <div class="form-group">
+          <label for="myCurrentPassword">Mật khẩu hiện tại:</label>
+          <input
+            type="password"
+            class="form-control"
+            id="myCurrentPassword"
+            placeholder="Enter your current password"
+            name="myCurrentPassword"
+          />
+        </div>
+        <div class="form-group">
+          <label for="myNewPassword">Mật khẩu mới:</label>
+          <input
+            type="password"
+            class="form-control"
+            id="myNewPassword"
+            placeholder="Enter your new password"
+            name="myNewPassword"
+          />
+        </div>
+        <div class="form-group">
+          <label for="myRetypePassword">Nhập lại mật khẩu mới:</label>
+          <input
+            type="password"
+            class="form-control"
+            id="myRetypePassword"
+            placeholder="Retype your new password"
+            name="myRetypePassword"
+          />
+        </div>
+      </div>
+      <hr />
+      <div id="changePaswordFooter" class="text-center py-2">
+        <button
+          type="button"
+          class="mr-1 btn btn-danger"
+          id="cancelChangePassword"
+          (click)="modalService.close('modalChangePassword')"
+        >
+          Huỷ
+        </button>
+        <button
+          type="submit"
+          class="ml-1 btn btn-primary"
+          id="updateChangePassword"
+          (click)="modalService.open('')"
+        >
+          Đổi mật khẩu
+        </button>
+      </div>
+    </form>
+
+    <!-- <p>Mật khẩu hiện tại:</p>
+      <input type="password" name="myCurrentPassword" id="myCurrentPassword" />
+      <p>Mật khẩu mới:</p>
+      <input type="password" name="myNewPassword" id="myNewPassword" />
+      <p>Nhập lại mật khẩu mới:</p>
+      <input type="password" name="myRenewPassword" id="myRenewPassword" /> -->
+  </div>
+  <!-- </div> -->
+</jw-modal>
+
+<!-- Modal change information -->
+<jw-modal id="modalChangeInfo">
+  <div id="myModalChangeInfo">
+    <h4 id="changeInfoHeader" class="text-center col-11 py-2">
+      THÔNG TIN CÁ NHÂN
+    </h4>
+    <hr />
+    <form action="/action_page.php">
+      <div id="changeInfoBody">
+        <div class="form-group">
+          <label for="name">Họ tên:</label>
+          <input
+            type="text"
+            class="form-control"
+            id="myName"
+            placeholder="Enter your name"
+            name="myName"
+          />
+        </div>
+        <div class="form-group">
+          <label for="myPhoneNumber">Password:</label>
+          <input
+            type="tel"
+            class="form-control"
+            id="myPhoneNumber"
+            placeholder="Enter your phone number"
+            name="myPhoneNumber"
+            pattern="0[1-9]{1}[0-9]{8}"
+          />
+        </div>
+        <div class="form-group">
+          <label for="myBirthDay">Ngày sinh:</label>
+          <input
+            type="date"
+            class="form-control"
+            id="myBirthDay"
+            placeholder="Enter your birthday"
+            name="myBirthDay"
+          />
+        </div>
+        <div class="form-group">
+          <label>Giới tính</label><br />
+          <div class="form-check-inline">
+            <label class="form-check-label" for="male">
+              <input
+                type="radio"
+                class="form-check-input"
+                id="male"
+                name="male"
+                value="male"
+                checked
+              />Nam
+            </label>
+          </div>
+          <div class="form-check-inline">
+            <label class="form-check-label" for="female">
+              <input
+                type="radio"
+                class="form-check-input"
+                id="female"
+                name="female"
+                value="female"
+              />Nữ
+            </label>
+          </div>
+          <div class="form-check-inline">
+            <label class="form-check-label" for="other">
+              <input
+                type="radio"
+                class="form-check-input"
+                id="other"
+                name="other"
+                value="other"
+              />Khác
+            </label>
+          </div>
+        </div>
+      </div>
+      <hr />
+      <div id="changeInfoFooter" class="text-center py-2">
+        <button
+          type="button"
+          class="mr-1 btn btn-danger"
+          id="cancelUpdateInfo"
+          (click)="modalService.close('modalChangeInfo')"
+        >
+          Huỷ
+        </button>
+        <button
+          type="submit"
+          class="ml-1 btn btn-primary"
+          id="updateInfo"
+          (click)="modalService.open('')"
+        >
+          Cập nhật
+        </button>
+      </div>
+    </form>
+  </div>
+</jw-modal>
