@@ -2,33 +2,36 @@
   margin: 0;
   padding: 0;
 }
-
-.brandImage {
-  width: 50px;
-}
-
-.profile input {
-  width: 20;
-  height: 20;
-  border-radius: 50%;
-}
-
+/* SIDE_BAR */
 .sidebar {
-  z-index: 1;
+  /* z-index: 1; */
   background: #2f323a;
-  position: fixed;
-  height: 100%;
-  transition: 0.3s;
+  /* position: fixed; */
+  height: 100vh;
+  /* transition: 0.3s;
   transition-property: width;
-  overflow-y: auto;
+  overflow-y: auto; */
+  border-right: 1px solid black;
 }
 
-.sidebar .sidebar-menu {
+/* .sidebar .sidebar-menu {
   overflow: hidden;
+} */
+
+.sidebar .sidebar-menu .list-group .list-group-item {
+  text-align: center;
+  margin-bottom: 20px;
+  border: none;
+  border-radius: 0%;
+}
+
+.sidebar .sidebar-menu .list-group .profile {
+  background: #2f323a;
+  margin-top: 20px;
 }
 
 .sidebar .sidebar-menu .profile input {
-  margin: 20px 0px 0px -5px;
+  /* margin: 20px 0px 0px -5px; */
   width: 75px;
   height: 75px;
   border-radius: 50%;
@@ -36,18 +39,18 @@
   outline: none;
 }
 
-.sidebar .sidebar-menu .item {
+/* .sidebar .sidebar-menu .item {
   overflow: hidden;
-}
+} */
 
 .sidebar .sidebar-menu .item .menu-btn {
   display: block;
   color: #fff;
   position: relative;
-  padding: 10px 12px;
-  transition-property: background;
+  padding: 10px 10px;
+  /* transition-property: background; */
   background: #3498db;
-  overflow: hidden;
+  /* overflow: hidden; */
 }
 
 .sidebar .sidebar-menu .item .menu-btn:hover {
@@ -57,6 +60,15 @@
 
 .sidebar .sidebar-menu .item .menu-btn i {
   margin-right: 10px;
+}
+
+/*middleBar*/
+.middleBar {
+  background: #e6e6e6;
+  padding: 0px 10px 0px 10px;
+}
+.brandImage {
+  width: 40px;
 }
 
 .list-message {
@@ -74,39 +86,69 @@
 }
 
 hr {
-  height: 3px;
+  height: 1px;
   border-width: 0;
   color: black;
   background-color: black;
 }
 
-#modalUserInformation div:first-child {
-  border: 3px solid BLACK;
-  margin: 200px 400px;
+#myModalInfo {
+  border: 1px solid BLACK;
+  margin-top: 200px;
+  width: 400px;
   background-color: white;
 }
 
+/* Modal Change Password */
 #myModalChangePassword {
-  border: 3px solid BLACK;
-  margin: 200px 400px;
+  border: 1px solid BLACK;
+  margin-top: 150px;
+  width: 400px;
   background-color: white;
 }
 
+#changePasswordBody {
+  padding: 10px 0px 10px 50px;
+}
+
+#changePasswordBody input {
+  width: 300px;
+  margin: 10px 0px 10px 0px;
+}
+
+#cancelChangePassword {
+  width: 100px;
+}
+
+/* Modal Change Info */
 #myModalChangeInfo {
-  border: 3px solid BLACK;
-  margin: 200px 400px;
+  border: 1px solid BLACK;
+  margin-top: 150px;
+  width: 400px;
   background-color: white;
 }
 
-/* .form-group,
-.form-check-inline {
-  padding: 0px 20px;
-} */
-#changePasswordBody,
 #changeInfoBody {
-  padding: 10px 30px;
+  padding: 10px 0px 10px 50px;
 }
 
-.form-check-inline {
-  margin-right: 10px;
+#changeInfoBody input[type="tel"],
+input[type="text"],
+input[type="date"] {
+  width: 300px;
+  margin: 10px 0px 10px 0px;
+}
+
+#cancelUpdateInfo,
+#updateInfo {
+  width: 100px;
+}
+
+#changePassword,
+#changeInfo,
+#cancelChangePassword,
+#updateChangePassword,
+#cancelUpdateInfo,
+#updateInfo {
+  padding: 5px;
 }

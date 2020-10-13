@@ -4,7 +4,26 @@
       <div class="wrapper">
         <div class="sidebar">
           <div class="sidebar-menu">
-            <li class="profile">
+            <ul class="list-group">
+              <li class="list-group-item profile">
+                <input
+                  type="image"
+                  (click)="modalService.open('modalUserInformation')"
+                  src="../../assets/image/user1.png"
+                />
+              </li>
+              <li class="list-group-item item">
+                <a href="#" class="menu-btn">
+                  <i class="fa fa-comment-o"></i><span>Tin nhắn</span>
+                </a>
+              </li>
+              <li class="list-group-item item">
+                <a href="#" class="menu-btn">
+                  <i class="fa fa-user-circle"></i><span>Danh bạ</span>
+                </a>
+              </li>
+            </ul>
+            <!-- <li class="profile">
               <input
                 type="image"
                 (click)="modalService.open('modalUserInformation')"
@@ -20,12 +39,12 @@
               <a href="#profile" class="menu-btn">
                 <i class="fa fa-user-circle"></i><span>Danh bạ</span>
               </a>
-            </li>
+            </li> -->
           </div>
         </div>
       </div>
     </div>
-    <div class="col-lg-3 middle-content" style="background-color: #e6e6e6">
+    <!-- <div class="col-lg-3 middleBar">
       <div class="list-message">
         <div class="mt-2">
           <h5>
@@ -61,12 +80,11 @@
           </button>
         </div>
         <br />
-
         <app-list-friend></app-list-friend>
       </div>
-    </div>
+    </div> -->
 
-    <div class="col-lg-8">
+    <!-- <div class="col-lg-8">
       <h5>
         <img class="brandImage" src="../../assets/image/user.png" alt="" />
         <span class="ml-5">Đinh Đăng Khoa </span>
@@ -99,44 +117,44 @@
           </span>
         </div>
       </form>
-    </div>
+    </div> -->
   </div>
 </div>
 
 <!-- Modal User-->
 <jw-modal id="modalUserInformation">
-  <div>
+  <div id="myModalInfo" class="mx-auto">
     <button
-      class="close pr-1"
+      class="close pr-2 py-2"
       (click)="modalService.close('modalUserInformation')"
     >
       &times;
     </button>
-    <h4 id="userInformationHeader" class="text-center col-11 py-2">
-      THÔNG TIN
-    </h4>
+    <h5 id="userInformationHeader" class="col-11 py-2 pl-2">
+      Thông tin người dùng
+    </h5>
     <hr />
     <div id="userInformationBody" class="row">
-      <h3 class="text-center col-12 my-2">Trần Thế Duy</h3>
-      <p class="myPhoneNumber col-lg-6 pl-5 my-2">Điện thoại:</p>
-      <p class="phoneNumber col-lg-6 my-2">0798455595</p>
-      <p class="myGender col-lg-6 pl-5 my-2">Giới tính:</p>
-      <p class="gender col-6 my-2 my-2">Nam</p>
-      <p class="myDayOfBirth col-6 pl-5 my-2">Ngày sinh:</p>
-      <p class="dayOfBirth col-6 my-2">20/08/1999</p>
+      <h4 class="text-center col-12 my-2" id="userName">Trần Thế Duy</h4>
+      <p class="col-lg-6 pl-5 my-2">Điện thoại:</p>
+      <p class="userPhoneNumber col-lg-6 my-2">0798455595</p>
+      <p class="col-6 pl-5 my-2">Ngày sinh:</p>
+      <p class="userBirthday col-6 my-2">20/08/1999</p>
+      <p class="col-lg-6 pl-5 my-2">Giới tính:</p>
+      <p class="userGender col-6 my-2 my-2">Nam</p>
     </div>
     <hr />
     <div id="userInformationFooter" class="text-center py-2">
       <button
         id="changePassword"
-        class="mr-1 btn btn-info"
+        class="mr-2 btn btn-outline-dark"
         (click)="modalService.open('modalChangePassword')"
       >
         Đổi mật khẩu
       </button>
       <button
         id="changeInfo"
-        class="ml-1 btn btn-info"
+        class="ml-2 btn btn-outline-dark"
         (click)="modalService.open('modalChangeInfo')"
       >
         Chỉnh sửa thông tin
@@ -147,168 +165,182 @@
 
 <!-- Modal change password -->
 <jw-modal id="modalChangePassword">
-  <div id="myModalChangePassword">
-    <h4 id="changePasswordHeader" class="text-center col-11 py-2">
-      ĐỔI MẬT KHẨU
-    </h4>
+  <div id="myModalChangePassword" class="mx-auto">
+    <h5 id="changePasswordHeader" class="col-12 py-2 pl-2">Đổi mật khẩu</h5>
     <hr />
-    <form action="/action_page.php">
+
+    <form [formGroup]="passwordForm" (ngSubmit)="onSubmitPassword()">
       <div id="changePasswordBody">
         <div class="form-group">
-          <label for="myCurrentPassword">Mật khẩu hiện tại:</label>
-          <input
-            type="password"
-            class="form-control"
-            id="myCurrentPassword"
-            placeholder="Enter your current password"
-            name="myCurrentPassword"
-          />
+          <label>
+            Mật khẩu hiện tại:
+            <input
+              type="password"
+              class="form-control"
+              id="currentPassword"
+              placeholder="Nhập mật khẩu hiện tại"
+              formControlName="currentPassword"
+              required
+            />
+          </label>
         </div>
         <div class="form-group">
-          <label for="myNewPassword">Mật khẩu mới:</label>
-          <input
-            type="password"
-            class="form-control"
-            id="myNewPassword"
-            placeholder="Enter your new password"
-            name="myNewPassword"
-          />
+          <label>
+            Mật khẩu mới:
+            <input
+              type="password"
+              class="form-control"
+              id="newPassword"
+              placeholder="Nhập mật khẩu mới"
+              formControlName="newPassword"
+              required
+            />
+          </label>
         </div>
         <div class="form-group">
-          <label for="myRetypePassword">Nhập lại mật khẩu mới:</label>
-          <input
-            type="password"
-            class="form-control"
-            id="myRetypePassword"
-            placeholder="Retype your new password"
-            name="myRetypePassword"
-          />
+          <label>
+            Nhập lại mật khẩu mới:
+            <input
+              type="password"
+              class="form-control"
+              id="rewritePassWord"
+              placeholder="Nhập lại mật khẩu mới"
+              formControlName="rewritePassWord"
+              required
+            />
+          </label>
         </div>
       </div>
       <hr />
-      <div id="changePaswordFooter" class="text-center py-2">
+      <div id="changePasswordFooter" class="text-center py-2">
         <button
-          type="button"
-          class="mr-1 btn btn-danger"
+          type="cancel"
+          class="mr-2 btn btn-outline-danger"
           id="cancelChangePassword"
           (click)="modalService.close('modalChangePassword')"
+          (click)="resetForm()"
         >
           Huỷ
         </button>
         <button
           type="submit"
-          class="ml-1 btn btn-primary"
+          class="ml-2 btn btn-outline-success"
+          [disabled]="!passwordForm.valid"
           id="updateChangePassword"
-          (click)="modalService.open('')"
         >
           Đổi mật khẩu
         </button>
       </div>
     </form>
-
-    <!-- <p>Mật khẩu hiện tại:</p>
-      <input type="password" name="myCurrentPassword" id="myCurrentPassword" />
-      <p>Mật khẩu mới:</p>
-      <input type="password" name="myNewPassword" id="myNewPassword" />
-      <p>Nhập lại mật khẩu mới:</p>
-      <input type="password" name="myRenewPassword" id="myRenewPassword" /> -->
   </div>
-  <!-- </div> -->
 </jw-modal>
 
 <!-- Modal change information -->
 <jw-modal id="modalChangeInfo">
-  <div id="myModalChangeInfo">
+  <div id="myModalChangeInfo" class="mx-auto">
     <h4 id="changeInfoHeader" class="text-center col-11 py-2">
       THÔNG TIN CÁ NHÂN
     </h4>
     <hr />
-    <form action="/action_page.php">
+    <form [formGroup]="userForm" (ngSubmit)="onUpdateInfo()">
       <div id="changeInfoBody">
         <div class="form-group">
-          <label for="name">Họ tên:</label>
-          <input
-            type="text"
-            class="form-control"
-            id="myName"
-            placeholder="Enter your name"
-            name="myName"
-          />
+          <label>
+            Họ tên:
+            <input
+              type="text"
+              class="form-control"
+              id="userNameInfo"
+              placeholder="Nhập tên"
+              formControlName="userNameInfo"
+              autocomplete="off"
+              required
+            />
+          </label>
         </div>
         <div class="form-group">
-          <label for="myPhoneNumber">Password:</label>
-          <input
-            type="tel"
-            class="form-control"
-            id="myPhoneNumber"
-            placeholder="Enter your phone number"
-            name="myPhoneNumber"
-            pattern="0[1-9]{1}[0-9]{8}"
-          />
+          <label>
+            Số điện thoại:
+            <input
+              type="tel"
+              autocomplete="off"
+              class="form-control"
+              id="userPhoneNumberInfo"
+              placeholder="Nhập số điện thoại"
+              formControlName="userPhoneNumberInfo"
+              pattern="0[1-9]{1}[0-9]{8}"
+              required
+            />
+          </label>
         </div>
         <div class="form-group">
-          <label for="myBirthDay">Ngày sinh:</label>
-          <input
-            type="date"
-            class="form-control"
-            id="myBirthDay"
-            placeholder="Enter your birthday"
-            name="myBirthDay"
-          />
+          <label
+            >Ngày sinh:
+            <input
+              type="date"
+              class="form-control"
+              id="userBirthdayInfo"
+              placeholder="Enter your birthday"
+              formControlName="userBirthdayInfo"
+              required
+            />
+          </label>
         </div>
         <div class="form-group">
-          <label>Giới tính</label><br />
-          <div class="form-check-inline">
-            <label class="form-check-label" for="male">
-              <input
-                type="radio"
-                class="form-check-input"
-                id="male"
-                name="male"
-                value="male"
-                checked
-              />Nam
-            </label>
-          </div>
-          <div class="form-check-inline">
-            <label class="form-check-label" for="female">
-              <input
-                type="radio"
-                class="form-check-input"
-                id="female"
-                name="female"
-                value="female"
-              />Nữ
-            </label>
-          </div>
-          <div class="form-check-inline">
-            <label class="form-check-label" for="other">
-              <input
-                type="radio"
-                class="form-check-input"
-                id="other"
-                name="other"
-                value="other"
-              />Khác
-            </label>
-          </div>
+          <label
+            >Giới tính:<br />
+            <div class="form-check-inline">
+              <label>
+                <input
+                  type="radio"
+                  class="form-check-input"
+                  id="male"
+                  formControlName="userGenderInfo"
+                  value="Nam"
+                />Nam &nbsp;
+              </label>
+            </div>
+            <div class="form-check-inline">
+              <label>
+                <input
+                  type="radio"
+                  class="form-check-input"
+                  id="female"
+                  formControlName="userGenderInfo"
+                  value="Nữ"
+                />Nữ &nbsp;
+              </label>
+            </div>
+            <div class="form-check-inline">
+              <label>
+                <input
+                  type="radio"
+                  class="form-check-input"
+                  id="other"
+                  formControlName="userGenderInfo"
+                  value="Khác"
+                />Khác &nbsp;
+              </label>
+            </div>
+          </label>
         </div>
       </div>
       <hr />
       <div id="changeInfoFooter" class="text-center py-2">
         <button
           type="button"
-          class="mr-1 btn btn-danger"
+          class="mr-1 btn btn-outline-danger"
           id="cancelUpdateInfo"
           (click)="modalService.close('modalChangeInfo')"
+          (click)="resetForm()"
         >
           Huỷ
         </button>
         <button
           type="submit"
-          class="ml-1 btn btn-primary"
+          class="ml-1 btn btn-outline-success"
+          [disabled]="!userForm.valid"
           id="updateInfo"
-          (click)="modalService.open('')"
         >
           Cập nhật
         </button>
