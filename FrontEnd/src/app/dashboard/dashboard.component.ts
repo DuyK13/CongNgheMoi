@@ -1,58 +1,105 @@
-import { Observable } from 'rxjs';
+import { Router } from '@angular/router';
+import { ServerHttpService } from './../service/serviceApi/server-http.service';
 import { ModalService } from './../_modal/modal.service';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, NgModule } from '@angular/core';
 import { AccountService } from './../service/account/account.service';
-import { FormGroup, FormControl } from '@angular/forms';
-import { log } from 'util';
+import {
+  FormGroup,
+  FormControl,
+  FormBuilder,
+  Validators,
+} from '@angular/forms';
 
+interface User {
+  id: string;
+  name: string;
+  phoneNumber: string;
+  birthday: Date;
+  gender: string;
+  password: string;
+  userName: string;
+}
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.css'],
 })
 export class DashboardComponent implements OnInit {
-  title = 'Trang chủ';
+  user: User;
 
-  user = {
-    name: 'Trần Thế Duy',
-    phoneNumber: '0798455595',
-    birthday: '20/08/1999',
-    gender: 'Nam',
-  };
-
-  passwordForm = new FormGroup({
-    currentPassword: new FormControl(''),
-    newPassword: new FormControl(''),
-    rewritePassWord: new FormControl(''),
+  passwordForm = this.formBuilder.group({
+    currentPassword: ['', [Validators.required]],
+    newPassword: [
+      '',
+      [
+        Validators.required,
+        // Validators.pattern(
+        //   '^(?=.*d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$'
+        // ),
+      ],
+    ],
+    rewritePassWord: [
+      '',
+      [
+        Validators.required,
+        // Validators.pattern(
+        //   '^(?=.*d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$'
+        // ),
+      ],
+    ],
   });
-  userForm = new FormGroup({
-    userNameInfo: new FormControl(''),
-    userPhoneNumberInfo: new FormControl(''),
-    userBirthdayInfo: new FormControl(''),
-    userGenderInfo: new FormControl(''),
-  });
+  userForm;
 
-  constructor(public modalService: ModalService) {}
+  constructor(
+    public modalService: ModalService,
+    private formBuilder: FormBuilder,
+    private serverHttp: ServerHttpService,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
-    // this.getUserInfo();
-  }
+    this.serverHttp.getProfile().subscribe((data) => {
+      this.user = {
+        id: data.id,
+        name: data.name,
+        phoneNumber: data.phoneNumber,
+        birthday: data.birthday,
+        gender: data.gender,
+        password: data.password,
+        userName: data.userName,
+      };
 
-  /**
-   * getUserInfo
-   */
-  public getUserInfo() {
-    this.userForm.controls.userNameInfo.setValue(this.user.name);
-    this.userForm.controls.userPhoneNumberInfo.setValue(this.user.phoneNumber);
-    this.userForm.controls.userBirthdayInfo.setValue(this.user.birthday);
-    this.userForm.controls.userGenderInfo.setValue(this.user.gender);
+      sessionStorage.setItem('userId', this.user.id);
+    });
   }
-
   /**
    * onSubmitPassword
    */
   public onSubmitPassword() {
-    console.log(this.passwordForm.value);
+    if (
+      this.passwordForm.controls.currentPassword.value !==
+        this.passwordForm.controls.newPassword.value &&
+      this.passwordForm.controls.rewritePassWord.value ===
+        this.passwordForm.controls.newPassword.value
+    ) {
+      this.user.password = this.passwordForm.controls.newPassword.value;
+      this.serverHttp.changePassword(this.user).subscribe((data) => {
+        this.modalService.close('modalChangePassword');
+        alert('no navigate ???');
+      });
+    } else if (
+      this.passwordForm.controls.newPassword.value !==
+      this.passwordForm.controls.rewritePassWord.value
+    ) {
+      alert('Mật khẩu xác nhận không trùng');
+      this.passwordForm.reset();
+    } else if (
+      this.passwordForm.controls.currentPassword.value ===
+      this.passwordForm.controls.newPassword.value
+    ) {
+      alert('Mật khẩu mới bị trùng');
+      this.passwordForm.reset();
+    }
   }
 
   /**
@@ -67,6 +114,32 @@ export class DashboardComponent implements OnInit {
    */
   public resetForm() {
     this.passwordForm.reset();
-    this.userForm.reset();
+  }
+
+  /**
+   * resetUserForm
+   */
+  public resetUserForm() {
+    this.userForm = this.formBuilder.group({
+      userNameInfo: [
+        this.user.name,
+        [
+          Validators.required,
+          Validators.minLength(3),
+          Validators.maxLength(10),
+        ],
+      ],
+      userPhoneNumberInfo: [
+        this.user.phoneNumber,
+        [
+          Validators.required,
+          Validators.minLength(10),
+          Validators.maxLength(10),
+          Validators.pattern('0[1-9][0-9]{8}'),
+        ],
+      ],
+      userBirthdayInfo: [new Date(this.user.birthday), [Validators.required]],
+      userGenderInfo: [this.user.gender, [Validators.required]],
+    });
   }
 }

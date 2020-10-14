@@ -11,7 +11,7 @@ import { Router, RouterModule } from '@angular/router';
 import { SignupComponent } from './signup/signup.component';
 import { MessageComponent } from './message/message.component';
 import { ModalModule } from './_modal';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AuthenticationService } from './service/authentication/authentication.service';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { AngularFireModule } from '@angular/fire';
@@ -49,6 +49,7 @@ const firebaseConfig = {
   ],
   imports: [
     ModalModule,
+    FormsModule,
     AngularFireAuthModule,
     AngularFireModule.initializeApp(firebaseConfig),
     ReactiveFormsModule,
