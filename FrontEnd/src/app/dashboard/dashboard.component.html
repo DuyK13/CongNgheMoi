@@ -135,13 +135,15 @@
     </h5>
     <hr />
     <div id="userInformationBody" class="row">
-      <h4 class="text-center col-12 my-2" id="userName">Trần Thế Duy</h4>
+      <h4 class="text-center col-12 my-2" id="userName">{{ user?.name }}</h4>
       <p class="col-lg-6 pl-5 my-2">Điện thoại:</p>
-      <p class="userPhoneNumber col-lg-6 my-2">0798455595</p>
+      <p class="userPhoneNumber col-lg-6 my-2">{{ user?.phoneNumber }}</p>
       <p class="col-6 pl-5 my-2">Ngày sinh:</p>
-      <p class="userBirthday col-6 my-2">20/08/1999</p>
+      <p class="userBirthday col-6 my-2">
+        {{ user?.birthday }}
+      </p>
       <p class="col-lg-6 pl-5 my-2">Giới tính:</p>
-      <p class="userGender col-6 my-2 my-2">Nam</p>
+      <p class="userGender col-6 my-2 my-2">{{ user?.gender }}</p>
     </div>
     <hr />
     <div id="userInformationFooter" class="text-center py-2">
@@ -168,8 +170,7 @@
   <div id="myModalChangePassword" class="mx-auto">
     <h5 id="changePasswordHeader" class="col-12 py-2 pl-2">Đổi mật khẩu</h5>
     <hr />
-
-    <form [formGroup]="passwordForm" (ngSubmit)="onSubmitPassword()">
+    <form [formGroup]="passwordForm">
       <div id="changePasswordBody">
         <div class="form-group">
           <label>
@@ -180,7 +181,6 @@
               id="currentPassword"
               placeholder="Nhập mật khẩu hiện tại"
               formControlName="currentPassword"
-              required
             />
           </label>
         </div>
@@ -193,20 +193,18 @@
               id="newPassword"
               placeholder="Nhập mật khẩu mới"
               formControlName="newPassword"
-              required
             />
           </label>
         </div>
         <div class="form-group">
           <label>
-            Nhập lại mật khẩu mới:
+            Xác nhận mật khẩu:
             <input
               type="password"
               class="form-control"
               id="rewritePassWord"
-              placeholder="Nhập lại mật khẩu mới"
+              placeholder="Xác nhận mật khẩu"
               formControlName="rewritePassWord"
-              required
             />
           </label>
         </div>
@@ -227,6 +225,7 @@
           class="ml-2 btn btn-outline-success"
           [disabled]="!passwordForm.valid"
           id="updateChangePassword"
+          (click)="onSubmitPassword()"
         >
           Đổi mật khẩu
         </button>
@@ -238,11 +237,9 @@
 <!-- Modal change information -->
 <jw-modal id="modalChangeInfo">
   <div id="myModalChangeInfo" class="mx-auto">
-    <h4 id="changeInfoHeader" class="text-center col-11 py-2">
-      THÔNG TIN CÁ NHÂN
-    </h4>
+    <h5 id="changeInfoHeader" class="col-12 py-2 pl-2">Thông tin cá nhân</h5>
     <hr />
-    <form [formGroup]="userForm" (ngSubmit)="onUpdateInfo()">
+    <form *ngIf="user" [formGroup]="userForm">
       <div id="changeInfoBody">
         <div class="form-group">
           <label>
@@ -254,7 +251,6 @@
               placeholder="Nhập tên"
               formControlName="userNameInfo"
               autocomplete="off"
-              required
             />
           </label>
         </div>
@@ -268,8 +264,6 @@
               id="userPhoneNumberInfo"
               placeholder="Nhập số điện thoại"
               formControlName="userPhoneNumberInfo"
-              pattern="0[1-9]{1}[0-9]{8}"
-              required
             />
           </label>
         </div>
@@ -280,9 +274,8 @@
               type="date"
               class="form-control"
               id="userBirthdayInfo"
-              placeholder="Enter your birthday"
+              placeholder="Nhập ngày sinh"
               formControlName="userBirthdayInfo"
-              required
             />
           </label>
         </div>
@@ -339,8 +332,9 @@
         <button
           type="submit"
           class="ml-1 btn btn-outline-success"
-          [disabled]="!userForm.valid"
+          [disabled]="!userForm.dirty"
           id="updateInfo"
+          (click)="onUpdateInfo()"
         >
           Cập nhật
         </button>
